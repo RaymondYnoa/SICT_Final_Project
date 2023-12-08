@@ -29,8 +29,8 @@ pipeline {
             steps {
                 script {
                     // Modify deployment commands as needed
-                    bat 'docker build -t your_image_name .'
-                    bat 'docker push your_image_name'
+                    bat 'docker build -t employee-management-system .'
+                    bat 'docker push employee-management-system'
                 }
             }
         }
