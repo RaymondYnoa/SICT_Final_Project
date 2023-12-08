@@ -4,31 +4,34 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Checkout your source code from version control (e.g., Git)
-                git 'https://github.com/RaymondYnoa/SICT_Final_Project'
+                git 'https://github.com/RaymondYnoa/SICT_Final_Project.git'
             }
         }
 
         stage('Build') {
             steps {
-                // Build your Spring Boot application with Maven
-                sh 'mvn clean install'
+                script {
+                    // Use 'call' to execute commands, which works on both Windows and Unix-like systems
+                    bat 'mvn clean install'
+                }
             }
         }
 
         stage('Test') {
             steps {
-                // Run JUnit tests
-                sh 'mvn test'
+                script {
+                    bat 'mvn test'
+                }
             }
         }
 
         stage('Deploy') {
             steps {
-                // Deploy your application (e.g., using Docker or Kubernetes)
-                sh 'docker build -t your_image_name .'
-                sh 'docker push your_image_name'
-              echo 'Deploying'
+                script {
+                    // Modify deployment commands as needed
+                    bat 'docker build -t your_image_name .'
+                    bat 'docker push your_image_name'
+                }
             }
         }
     }
